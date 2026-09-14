@@ -62,7 +62,9 @@ resource "google_compute_instance" "hermes_vm" {
     subnetwork = google_compute_subnetwork.hermes_subnet.id
 
     access_config {
-      # Ephemeral public IP
+      # Ephemeral public IP on Standard Tier networking for the larger
+      # 200 GB/month Always Free egress allowance (vs 1 GB on Premium Tier)
+      network_tier = "STANDARD"
     }
   }
 
